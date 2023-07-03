@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block baslik %} Randevu Oluşturma {% endblock baslik %}
+
+
+{% block ekOgeler %}
+
+{% endblock ekOgeler %}
+
+
+
+
+{% block site-icerigi %}
+
+
+{% for reservation in reservations %}
+
+<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Randevu Olustur</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">     
+          <form id="form_1" method="post">
+            {% csrf_token %}
+          
+            <div style="margin-bottom: 1rem;" class="workshop">
+
+            <img src="/{{reservation.resimControl}}" alt="{{data.title}}" style="width: 50%;">
+            <h5 class="card-title">{{reservation.title}}</h5>
+            <p class="card-text">{{reservation.aciklama}}</p>
+            <small>{{reservation.aciklama2}}</small>
+
+            </div>
+            
+           
+
+            <h4>Kaydını Tamamla</h4>
+            {{form}}
+            
+               
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+            <button type="submit" class="btn btn-success">Onayla</button>
+          </div>
+  
+          </form>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  
+  {% endfor %}
+
+<div class="row">
+
+
+    {% for reservation in reservations %}
+
+
+    <div class="card m-4" style="width: 25%;">
+        <img src="/{{reservation.resimControl}}" alt="{{data.title}}">
+        <div class="card-body">
+          <h5 class="card-title">{{reservation.title}}</h5>
+          <p class="card-text">{{reservation.aciklama}}</p>
+          <small>{{reservation.aciklama2}}</small>
+          <br>
+          <span onclick="activeModal('{{reservation.id}}')" style="margin-top: 1rem;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal3">Randevu Olustur</span> 
+        </div>
+      </div>
+
+      {% endfor %}
+      
+    
+</div>
+
+
+
+<script>
+
+  function activeModal(id) {
+  console.log("gleen id:", id)
+  const form = document.getElementById('form_1')
+  const absoluteURL = `/make/randevu/${id}`
+
+  form.action = absoluteURL
+
+  console.log("form:", form)
+  
+
+  }
+</script>
+
+{% endblock site-icerigi %}
