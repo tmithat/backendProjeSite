@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block baslik %} AnaSayfa {% endblock baslik %}
+
+
+{% block ekOgeler %}
+
+<style>
+
+</style>
+
+{% endblock ekOgeler %}
+
+
+
+
+{% block site-icerigi %}
+
+<div class="banner"> 
+    <img style="width: 100%;" src="{% static 'public/Etsybanner.jpg' %}" alt="banner">
+</div>
+
+<div style="margin-top: 2rem;" class="body">
+    <h5 style="text-align: center;">100% el yapımı ürünlerimizi kendimiz tasarlayıp, kendimiz üretiyoruz...
+        <br>
+    
+    </h5>
+
+    <a target="_blank" style="display: block; text-align: center; margin-top: 2rem;" href="https://www.instagram.com/nikacraftstudio/">
+        <img style="width: 4%;" src="{% static 'public/instagram.png' %}" alt="instagram">
+    </a>
+
+</div>
+
+  
+{% endblock site-icerigi %}
